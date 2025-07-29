@@ -1,4 +1,4 @@
-package com.algaworks.algaposts.post.service.domain.infrastructure.rabbitmq;
+package com.algaworks.algaposts.post.service.infrastructure.rabbitmq;
 
 import com.algaworks.algaposts.post.service.api.model.PostProcessingResultData;
 import com.algaworks.algaposts.post.service.domain.service.PostService;
