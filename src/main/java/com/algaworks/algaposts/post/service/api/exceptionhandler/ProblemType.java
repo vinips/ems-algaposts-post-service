@@ -2,7 +2,8 @@ package com.algaworks.algaposts.post.service.api.exceptionhandler;
 
 public enum ProblemType {
 
-	BAD_REQUEST("/bad-request", "Bad Request");
+	BAD_REQUEST("/bad-request", "Bad Request"),
+	ENTITY_NOT_FOUND("/entity-not-found", "Entity Not Found");
 
 	private String uri;
 	private String title;

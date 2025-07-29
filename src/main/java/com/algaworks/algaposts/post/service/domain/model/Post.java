@@ -1,5 +1,6 @@
 package com.algaworks.algaposts.post.service.domain.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -19,8 +20,9 @@ public class Post {
     @Id
     private UUID id;
 
-    private String title;
+    @Column(length = 1000)
     private String body;
+    private String title;
     private String author;
     private Integer wordCount;
     private Double calculatedValue;

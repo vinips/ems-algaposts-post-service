@@ -2,10 +2,14 @@ package com.algaworks.algaposts.post.service.api.controller;
 
 import com.algaworks.algaposts.post.service.api.model.PostInput;
 import com.algaworks.algaposts.post.service.api.model.PostOutput;
+import com.algaworks.algaposts.post.service.api.model.PostSummaryOutput;
 import com.algaworks.algaposts.post.service.domain.model.Post;
 import com.algaworks.algaposts.post.service.domain.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -27,6 +31,18 @@ public class PostController {
         return ResponseEntity
                 .created(getCreationURI(post.getId()))
                 .body(convertToOutputModel(post));
+    }
+
+    @GetMapping("/{postId}")
+    public ResponseEntity<PostOutput> findOne(@PathVariable UUID postId) {
+        Post post = postService.findByIdOrFail(postId);
+
+        return ResponseEntity.ok(convertToOutputModel(post));
+    }
+
+    @GetMapping
+    public Page<PostSummaryOutput> findAll(@PageableDefault Pageable pageable) {
+        return postService.findAllPostsSummary(pageable);
     }
 
     private PostOutput convertToOutputModel(Post post) {
